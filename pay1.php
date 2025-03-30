@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paiement</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+            padding: 20px;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            margin: auto;
+        }
+        input, select, button {
+            width: 94%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        button {
+            background: #ff6600;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #cc5200;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Informations de Paiement</h2>
+        <form id="paymentForm">
+            <input type="text" id="expediteur" placeholder="Votre nom et prénom" required>
+            <input type="text" id="beneficiaire" placeholder="Nom et prénom du bénéficiaire" required>
+            <input type="email" id="email" placeholder="Votre email" required>
+            <input type="number" id="montant" placeholder="Montant" required>
+
+            <select id="methode" required onchange="toggleAdresse()">
+                <option value="">Sélectionnez une option</option>
+                <option value="email">Recevoir par email</option>
+                <option value="livraison">Se faire livrer</option>
+            </select>
+
+            <div id="adresseFields" class="hidden">
+                <input type="text" id="adresse" placeholder="Adresse">
+                <input type="text" id="ville" placeholder="Ville">
+                <input type="text" id="code_postal" placeholder="Code postal">
+            </div>
+
+            <button type="submit">Confirmer l'achat</button>
+        </form>
+    </div>
+
+    <script>
+        function toggleAdresse() {
+            var methode = document.getElementById("methode").value;
+            var adresseFields = document.getElementById("adresseFields");
+            adresseFields.style.display = (methode === "livraison") ? "block" : "none";
+        }
+
+        document.getElementById("paymentForm").addEventListener("submit", function(event) {
+            event.preventDefault(); // Empêche l'envoi du formulaire
+
+            // Récupération des valeurs
+            let expediteur = document.getElementById("expediteur").value;
+            let beneficiaire = document.getElementById("beneficiaire").value;
+            let email = document.getElementById("email").value;
+            let montant = document.getElementById("montant").value;
+            let methode = document.getElementById("methode").value;
+            let adresse = methode === "livraison" ? document.getElementById("adresse").value : "";
+            let ville = methode === "livraison" ? document.getElementById("ville").value : "";
+            let code_postal = methode === "livraison" ? document.getElementById("code_postal").value : "";
+
+            // Stocker dans localStorage
+            localStorage.setItem("paiement", JSON.stringify({
+                expediteur, beneficiaire, email, montant, methode, adresse, ville, code_postal
+            }));
+
+            // Rediriger vers la page de confirmation
+            window.location.href = "confirmation.php";
+        });
+    </script>
+
+<!-- Script Google Traduction -->
+<script type="text/javascript">
+    function googleTranslateElementInit() {
+        new google.translate.TranslateElement({pageLanguage: 'fr'}, 'google_translate_element');
+    }
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+</html>
