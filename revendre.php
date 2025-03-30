@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Revendre une Carte Cadeau</title>
+    <link rel="stylesheet" href="style.css">
+    
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #3f51b5;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        label {
+            font-weight: bold;
+            text-align: left;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input, select, textarea {
+            width: 94%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            background: #3f51b5;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background: #2c3a8c;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 15px;
+            text-decoration: none;
+            color: #3f51b5;
+            font-size: 14px;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Revendre une Carte Cadeau</h1>
+        <p>Remplissez ce formulaire pour mettre en vente votre carte cadeau.</p>
+        
+        <form action="reçu.php" method="POST">
+            <label for="nom">Nom complet :</label>
+            <input type="text" id="nom" name="nom" required>
+
+            <label for="email">Adresse e-mail :</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="carte">Type de carte cadeau :</label>
+            <select id="carte" name="carte" required>
+                <option value="">Sélectionnez une carte</option>
+                <option value="Amazon">Amazon</option>
+                <option value="Google Play">Google Play</option>
+                <option value="iTunes">iTunes</option>
+                <option value="Steam">Steam</option>
+            </select>
+
+            <label for="valeur">Valeur de la carte (en €) :</label>
+            <input type="number" id="valeur" name="valeur" min="5" required>
+
+            <label for="code">Code de la carte :</label>
+            <input type="text" id="code" name="code" required>
+
+            <label for="message">Commentaire (facultatif) :</label>
+            <textarea id="message" name="message" rows="4"></textarea>
+
+            <button type="submit">Envoyer la demande</button>
+        </form>
+
+        <a href="commerce.php" class="back-link">Retour à l'accueil</a>
+    </div>
+<!-- Script Google Traduction -->
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({pageLanguage: 'fr'}, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+</body>
+</html>
