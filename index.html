@@ -23,16 +23,19 @@
         }
 
         /* En-tête */
-        header {
-            background: url('image/picture.jpg');
-            color: black;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            position: relative;
-        }
-
+          header {
+    background: url('image/picture.jpg') no-repeat center center;
+    background-size: cover; /* L’image couvrira toute la largeur */
+    background-color: black; /* Fond au cas où l’image ne couvre pas tout */
+    color: black;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    height: 150px; /* Ajuste la hauteur selon tes besoins */
+    width: 88vw; /* Assure que le header prend toute la largeur de l'écran */
+}  
         /* Bouton Hamburger en haut */
         .hamburger-container {
             position: absolute;
@@ -45,10 +48,10 @@
             cursor: pointer;
             border: none;
             background: none;
-            color: black;
+            color: white;
             padding: 10px;
         }
-
+        
         /* Menu latéral superposé */
         .sidebar {
             position: fixed;
