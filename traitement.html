@@ -58,24 +58,33 @@
             color: #000;
         }
 
-        .pay-button {
-            background: #ff6600;
-            color: white;
+      .pay-button {
+            background: #ccc;
+            color: #666;
             border: none;
             padding: 10px 15px;
             border-radius: 5px;
-            cursor: pointer;
+            cursor: not-allowed;
             font-size: 16px;
-            transition: background 0.3s ease, transform 0.2s ease;
             display: inline-block;
             margin-top: 20px;
             text-decoration: none;
         }
-
-        .pay-button:hover {
-            background: #cc5200;
-            transform: scale(1.05);
+        .pay-button.active {
+            background: #ff6600;
+            color: white;
+            cursor: pointer;
         }
+        .pay-button.active:hover {
+            background: #cc5200;
+        }
+        #uploaded-image {
+            display: none;
+            margin-top: 20px;
+            max-width: 100%;
+            border-radius: 8px;
+        }
+       
 
         .warning-message {
             background: #ffeeba;
@@ -87,38 +96,73 @@
             text-align: center;
             font-size: 16px;
         }
+.containers{
+opacity:15%;
+}
+h2{
+font-size:17px;
+}
+p1{
+font-size:13px;
+margin-left:%;
+}
+p2{
+font-size:13px;
+margin-left:30%;
+}
+ 
     </style>
 </head>
 <body>
 
 <div class="warning-message">
-    <p><strong>⚠️ Important :</strong> Lors du paiement, veuillez renseigner uniquement votre <strong>Code de Référence</strong> ci-dessous comme motif de paiement sans aucune autre précision.</p>
+    <p><strong>⚠️ Important :</strong> Lors du paiement, veuillez respecter le montant minimum et maximum de transaction, aussi utilisez un moyen de paiement dont vous en êtes proprietaire.</p>
 </div>
 
 <div class="payment-methods-container">
-    <h2>Informations de Paiement</h2>
+    <h2>Choisissez un moyen de paiement</h2>
  
-    
+  <div class="payment-section">
+
+            <h3>Carte bancaire(Recommandé)</h3>
+<p1>Min:25€</p1> <p2>Max:500€</p2>
+        
+  <div class="containers">
+‎         <div class="base"><img style="width:70%;" src="image/credit1.png"></div>  
+
+ </div> 
+   <div style="text-align:center;margin-top:-25%;position:absolute;">
+<div style="margin-right:8%;" class="overlay"><img style="width:10%;" src="image/ref.png"></div><div style="margin-right:5%;">
+<p style="color:#ff6600; font-size:13px;">Methode indisponible dans votre region en raison des problemes politiques.</p> </div> 
+</div>                
+       ‎            
+
+</div> 
+  
     <!-- Section Virement Bancaire -->
-   
+    
         <div class="payment-section">
-            <h3>Virement Bancaire</h3>
+            <h3>Virement bancaire</h3>
+<p1>Min:150€</p1> <p2>Max:2500€</p2>
            
                 <p class="payment-info">
           
-                        <span class="highlight">Nom :</span> Carte regalo<br>
+                        <span class="highlight">Nom :</span> ISSASHOP<br>
                 
-                        <span class="highlight">IBAN :</span> ‎BE67967447812687<br>
+                        <span class="highlight">IBAN :</span> ‎‎BE67967447812687<br>
                     
-                        <span class="highlight">Code Swift :</span> TRWIBEB1XXX‎<br>
+                        <span class="highlight">Swift/Bic:</span> TRWIBEB1XXX‎<br>
+ <span class="highlight">Type de transfer :</span> instantané<br>
+                    
                                 <span class="highlight">Code de Référence :</span> QFTxbK1<br>
-                    
+ 
 </div>
     <!-- Section Paiement en Cryptomonnaie -->
     
 
         <div class="payment-section">
             <h3>Paiement en Cryptomonnaie</h3>
+<p1>Min:35€</p1> <p2>Max:5500€</p2>
            
                 <p class="payment-info">
                   
@@ -127,10 +171,34 @@
                 </p>
             
         </div>
+ <h3>Importez le reçu de paiement</h3>
+           
 
-    <a href="merci.html" class="pay-button">J'ai effectué le paiement</a>
+<input type="file" id="image-upload" style="display:none;" accept="image/*">
+<img src="image/imp.jpg" id="upload-button" style="cursor:pointer; width:90px;" onclick="document.getElementById('image-upload').click();">
+<br>
+<img id="uploaded-image" alt="Image importée">
+
+<br>
+<a id="pay-button" class="pay-button">J'ai effectué le paiement</a>
 
 </div>
+<script>
+document.getElementById('image-upload').addEventListener('change', function(event) {
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                document.getElementById('uploaded-image').src = e.target.result;
+                document.getElementById('uploaded-image').style.display = 'block';
+                const payButton = document.getElementById('pay-button');
+                payButton.classList.add('active');
+                payButton.setAttribute('href', 'merci.html');
+            };
+            reader.readAsDataURL(file);
+        }
+    });
+</script>
 
 <!-- Script Google Traduction -->
 <script type="text/javascript">
